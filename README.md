@@ -1,10 +1,7 @@
 # 料理计划
 
 <p align="center">
-  <img src="./docs/screenshots/home.png" alt="料理计划首页" width="23%" />
-  <img src="./docs/screenshots/recipe-timer.png" alt="菜谱步骤计时器" width="23%" />
-  <img src="./docs/screenshots/meal-plan.png" alt="每周三餐计划" width="23%" />
-  <img src="./docs/screenshots/daily-shopping-list.png" alt="单日买菜清单" width="23%" />
+  <img src="./docs/readme-hero.png" alt="料理计划：把做饭变成可执行任务" width="100%" />
 </p>
 
 <p align="center">
