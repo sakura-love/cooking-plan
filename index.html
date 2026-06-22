@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="料理计划是一款把菜谱拆成任务流的 Android 做饭助手，支持离线菜谱、步骤打勾、计时器、一周计划和自动买菜清单。" />
+  <meta name="theme-color" content="#f5e9db" />
+  <title>料理计划 | 把做饭拆成任务流</title>
+  <style>
+    :root {
+      --bg: #f5eadc;
+      --bg-2: #eef5ee;
+      --card: rgba(255, 251, 245, 0.78);
+      --card-strong: #fffaf2;
+      --text: #241d19;
+      --muted: #6b5d54;
+      --line: rgba(90, 64, 46, 0.14);
+      --accent: #ca503c;
+      --accent-2: #2e7d5b;
+      --accent-3: #c08a20;
+      --shadow: 0 24px 70px rgba(72, 50, 34, 0.14);
+      --radius-xl: 36px;
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(202, 80, 60, 0.12), transparent 22%),
+        radial-gradient(circle at 92% 8%, rgba(46, 125, 91, 0.16), transparent 26%),
+        radial-gradient(circle at 84% 88%, rgba(192, 138, 32, 0.14), transparent 28%),
+        linear-gradient(135deg, #fff8ef 0%, var(--bg) 48%, #eef6ee 100%);
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(245, 234, 220, 0.7);
+      border-bottom: 1px solid rgba(90, 64, 46, 0.08);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fffaf2;
+      font-weight: 900;
+      background: linear-gradient(145deg, #d24e38, #b63d2d);
+      box-shadow: 0 14px 28px rgba(191, 63, 47, 0.22);
+      flex: 0 0 auto;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.55);
+      border-color: var(--line);
+    }
+
+    .hero {
+      padding: 32px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 30px;
+      align-items: center;
+      min-height: calc(100vh - 92px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 251, 245, 0.72);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      box-shadow: 0 10px 26px rgba(80, 55, 38, 0.08);
+      color: var(--accent-2);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 18px 0 0;
+      max-width: 12ch;
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      font-weight: 950;
+    }
+
+    .hero h1 .accent { color: var(--accent); }
+
+    .lead {
+      margin: 22px 0 0;
+      max-width: 34rem;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.38rem);
+      line-height: 1.8;
+      font-weight: 650;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .chip {
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      font-size: 14px;
+      font-weight: 800;
+      color: #41352f;
+      box-shadow: 0 10px 24px rgba(80, 55, 38, 0.07);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      color: #fffaf2;
+      background: linear-gradient(145deg, #d24e38, #bf3f2f);
+      box-shadow: 0 16px 30px rgba(191, 63, 47, 0.26);
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.56);
+      border-color: rgba(90, 64, 46, 0.14);
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 700px;
+    }
+
+    .hero-heroimg {
+      position: absolute;
+      inset: 20px 72px 126px 16px;
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      background: #fff;
+      transform: rotate(-2deg);
+    }
+
+    .hero-heroimg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: 0;
+      bottom: 26px;
+      width: min(360px, 82%);
+      padding: 20px 22px;
+      border-radius: 24px;
+      background: rgba(255, 250, 242, 0.84);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      box-shadow: 0 18px 52px rgba(67, 47, 32, 0.16);
+      backdrop-filter: blur(16px);
+    }
+
+    .floating-card strong {
+      display: block;
+      color: var(--accent-2);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .floating-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      padding-top: 14px;
+      border-top: 1px solid rgba(90, 64, 46, 0.12);
+    }
+
+    .metric b {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 950;
+      color: var(--accent);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 18px 0 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.65rem, 3vw, 2.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 44rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      box-shadow: 0 16px 44px rgba(72, 50, 34, 0.08);
+    }
+
+    .feature .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(202, 80, 60, 0.12);
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .shot {
+      padding: 14px;
+      border-radius: 28px;
+      background: rgba(255, 250, 242, 0.7);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      box-shadow: 0 16px 44px rgba(72, 50, 34, 0.08);
+    }
+
+    .shot img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 20px;
+      display: block;
+      background: #fff;
+    }
+
+    .shot figcaption {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .shot figcaption span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step {
+      position: relative;
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+    }
+
+    .step .index {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(46, 125, 91, 0.12);
+      color: var(--accent-2);
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .install {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
+    }
+
+    .callout,
+    .codecard {
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255, 251, 245, 0.76);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      box-shadow: 0 16px 44px rgba(72, 50, 34, 0.08);
+    }
+
+    .callout h3,
+    .codecard h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .callout p,
+    .codecard p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .pill:hover { background: rgba(255, 255, 255, 0.86); }
+
+    .codecard code {
+      display: block;
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      overflow-x: auto;
+      background: #201913;
+      color: #f7efe4;
+      font-family: Consolas, "SFMono-Regular", Menlo, monospace;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .footer {
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .footer strong { color: var(--text); }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .install {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        min-height: 640px;
+      }
+
+      .grid-4,
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 20px, var(--max)); }
+
+      .topbar-inner,
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .hero-grid {
+        min-height: auto;
+        gap: 18px;
+      }
+
+      .hero-panel {
+        min-height: 520px;
+      }
+
+      .hero-heroimg {
+        inset: 10px 4px 118px 0;
+      }
+
+      .floating-card {
+        width: calc(100% - 28px);
+        right: 14px;
+        left: 14px;
+        bottom: 10px;
+      }
+
+      .grid-4,
+      .shots,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">
+        <div class="brand-mark">料</div>
+        <div class="brand-text">
+          <strong>料理计划</strong>
+          <span>把做饭拆成任务流</span>
+        </div>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#features">核心功能</a>
+        <a href="#screenshots">界面展示</a>
+        <a href="#install">安装</a>
+        <a href="#tech">技术栈</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Android App · GitHub Pages Demo</div>
+          <h1>把做饭变成 <span class="accent">可执行任务</span></h1>
+          <p class="lead">
+            料理计划是一款面向真实下厨场景的 Android 做饭助手。它把菜谱拆成步骤、计时和计划，让你从“翻菜谱”切换到“按流程完成”。
+          </p>
+
+          <div class="chips" aria-label="产品标签">
+            <span class="chip">200+ 本地菜谱</span>
+            <span class="chip">离线优先</span>
+            <span class="chip">步骤打勾</span>
+            <span class="chip">烹饪计时</span>
+            <span class="chip">一周三餐计划</span>
+            <span class="chip">自动买菜清单</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
+            <a class="btn secondary" href="./README.md">查看 README</a>
+            <a class="btn secondary" href="./CHANGELOG.md">更新日志</a>
+          </div>
+        </div>
+
+        <div class="hero-panel" aria-label="产品主视觉">
+          <div class="hero-heroimg">
+            <img src="./docs/readme-hero.png" alt="料理计划主视觉" />
+          </div>
+          <div class="floating-card">
+            <strong>做饭不是收藏，而是执行</strong>
+            <p>适合自己做饭、排一周菜单、整理采购清单和边做边看步骤的场景。核心体验默认本地可用，可选 AI 生成功能。</p>
+            <div class="metric-row" aria-label="产品数据">
+              <div class="metric">
+                <b>200+</b>
+                <span>本地菜谱</span>
+              </div>
+              <div class="metric">
+                <b>4</b>
+                <span>类 AI 服务商</span>
+              </div>
+              <div class="metric">
+                <b>3</b>
+                <span>餐计划体系</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>核心功能</h2>
+            <p>这套设计重点不是“展示菜谱”，而是把做饭过程变成一个可以逐步完成的工作流。</p>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <article class="feature">
+            <div class="icon">01</div>
+            <h3>任务式菜谱</h3>
+            <p>每道菜都拆成食材、步骤和进度节点，做饭时按步骤往下走，不用反复翻找文字。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">02</div>
+            <h3>步骤内置计时</h3>
+            <p>焯水、腌制、炖煮、蒸烤等需要时间的动作，可以直接在菜谱流程里开计时器。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">03</div>
+            <h3>一周三餐计划</h3>
+            <p>提前安排早餐、午餐、晚餐，同一顿饭也能放入多道菜，适合整周统筹。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">04</div>
+            <h3>自动买菜清单</h3>
+            <p>根据计划汇总当天或单餐所需食材，买菜时逐项勾选，减少遗漏和重复。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">05</div>
+            <h3>200+ 本地菜谱</h3>
+            <p>内置家常菜、主食、汤、凉菜、小吃和甜品，没接入 AI 也能直接离线使用。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">06</div>
+            <h3>可选 AI 生成</h3>
+            <p>可配置 DeepSeek、智谱、OpenAI 或兼容平台，按自己的口味快速生成新菜谱。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">07</div>
+            <h3>收藏常做菜</h3>
+            <p>常做菜可以单独收藏，减少重复搜索，常用菜单更容易回到手边。</p>
+          </article>
+          <article class="feature">
+            <div class="icon">08</div>
+            <h3>新手引导与主题</h3>
+            <p>提供厨房名词和基础操作说明，并支持跟随系统、浅色和深色模式。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>界面展示</h2>
+            <p>以下截图来自仓库中的实机预览，覆盖找菜、做菜、计划和采购的主流程。</p>
+          </div>
+        </div>
+
+        <div class="shots">
+          <figure class="shot">
+            <img src="./docs/screenshots/home.png" alt="首页找菜" />
+            <figcaption><strong>首页找菜</strong><span>分类浏览与搜索</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/recipe-detail.png" alt="菜谱详情" />
+            <figcaption><strong>菜谱详情</strong><span>结构化内容</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/recipe-steps.png" alt="步骤执行" />
+            <figcaption><strong>步骤执行</strong><span>勾选推进</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/recipe-timer.png" alt="步骤计时" />
+            <figcaption><strong>步骤计时</strong><span>流程内计时器</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/meal-plan.png" alt="一周计划" />
+            <figcaption><strong>一周计划</strong><span>三餐安排</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/daily-shopping-list.png" alt="当天买菜清单" />
+            <figcaption><strong>当天买菜清单</strong><span>自动汇总食材</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/favorites.png" alt="收藏常做菜" />
+            <figcaption><strong>收藏常做菜</strong><span>常用菜回收</span></figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="./docs/screenshots/settings.png" alt="设置与 AI 配置" />
+            <figcaption><strong>设置与 AI 配置</strong><span>模型服务商</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>使用流程</h2>
+            <p>用一条最短路径理解这个应用：先计划，再做饭，再买菜，最后回到常做菜。</p>
+          </div>
+        </div>
+
+        <div class="flow">
+          <article class="step">
+            <div class="index">1</div>
+            <h3>先选菜</h3>
+            <p>从首页分类里找菜，或者直接搜索菜名、分类、简介和食材。</p>
+          </article>
+          <article class="step">
+            <div class="index">2</div>
+            <h3>再排计划</h3>
+            <p>把菜放进早餐、午餐、晚餐，先把这周吃什么定下来。</p>
+          </article>
+          <article class="step">
+            <div class="index">3</div>
+            <h3>按步骤执行</h3>
+            <p>打开菜谱后逐步勾选，遇到需要时间的步骤直接开计时器。</p>
+          </article>
+          <article class="step">
+            <div class="index">4</div>
+            <h3>看清单买菜</h3>
+            <p>系统会根据计划汇总食材，买菜时逐项勾选，减少漏买。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>安装与发布</h2>
+            <p>这个页面可以直接放到 GitHub Pages 上使用，APK 下载链接也已经指向仓库里的发布文件。</p>
+          </div>
+        </div>
+
+        <div class="install">
+          <div class="callout">
+            <h3>直接下载 APK</h3>
+            <p>发布包位于仓库的 releases 目录。当前示例版本为 <strong>料理计划-v1.2.8.apk</strong>。如果手机里已经安装过正式版，请继续安装 release 包覆盖升级，不要使用 debug 包直接覆盖。</p>
+            <div class="link-row">
+              <a class="pill" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
+              <a class="pill" href="./README.md">README</a>
+              <a class="pill" href="./LICENSE">许可证</a>
+            </div>
+          </div>
+
+          <div class="codecard" id="tech">
+            <h3>技术栈</h3>
+            <p>项目主体是 Android / Kotlin 应用，使用了以下技术：</p>
+            <code>Kotlin
+Jetpack Compose
+Material 3
+Room
+Hilt
+Navigation Compose
+kotlinx-serialization
+OkHttp</code>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>料理计划</strong> 是一个把做饭变成任务流的 Android 工具，重点不是收藏菜谱，而是把饭真正做出来。
+    </div>
+  </footer>
+</body>
+</html>
