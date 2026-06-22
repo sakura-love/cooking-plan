@@ -4,18 +4,14 @@
   <img src="./docs/readme-hero.png" alt="料理计划：把做饭变成可执行任务" width="100%" />
 </p>
 
+<h2 align="center">把做饭拆成任务流的料理计划工具</h2>
+
 <p align="center">
-  <strong>把菜谱变成任务清单、计时器、一周菜单和买菜清单的料理计划工具。</strong>
+  <strong>200+ 本地菜谱</strong> · <strong>离线优先</strong> · <strong>步骤打勾</strong> · <strong>烹饪计时</strong> · <strong>一周菜单</strong> · <strong>自动买菜清单</strong>
 </p>
 
 <p align="center">
-  <strong>200+ 本地菜谱</strong> · <strong>离线优先</strong> · <strong>步骤打勾</strong> · <strong>烹饪计时</strong> · <strong>自动买菜清单</strong> · <strong>可选 AI 生成</strong>
-</p>
-
-<p align="center">
-  <a href="./releases/料理计划-v1.2.8.apk">下载 APK</a> ·
-  <a href="./CHANGELOG.md">查看更新日志</a> ·
-  <a href="./LICENSE">许可证说明</a>
+  <a href="./releases/料理计划-v1.2.8.apk">下载 APK</a> · <a href="./CHANGELOG.md">更新日志</a> · <a href="./LICENSE">许可证</a>
 </p>
 
 > 不只是“收藏菜谱”，而是把做饭这件事真正执行完。
@@ -107,21 +103,21 @@
   <tr>
     <td width="50%">
       <img src="./docs/screenshots/home.png" alt="首页目录与分类分组" width="92%" />
-      <p align="center"><strong>首页找菜</strong><br />分类和搜索并行。</p>
+      <p align="center"><strong>首页找菜</strong></p>
     </td>
     <td width="50%">
       <img src="./docs/screenshots/recipe-timer.png" alt="菜谱步骤与计时器" width="92%" />
-      <p align="center"><strong>步骤执行</strong><br />勾选和计时同屏。</p>
+      <p align="center"><strong>步骤执行</strong></p>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <img src="./docs/screenshots/meal-plan.png" alt="每周三餐计划" width="92%" />
-      <p align="center"><strong>一周计划</strong><br />先排菜单再开做。</p>
+      <p align="center"><strong>一周计划</strong></p>
     </td>
     <td width="50%">
       <img src="./docs/screenshots/daily-shopping-list.png" alt="买菜清单" width="92%" />
-      <p align="center"><strong>买菜清单</strong><br />自动汇总，逐项勾选。</p>
+      <p align="center"><strong>买菜清单</strong></p>
     </td>
   </tr>
 </table>
@@ -132,21 +128,21 @@
   <tr>
     <td width="50%">
       <img src="./docs/screenshots/recipe-detail.png" alt="菜谱详情与备菜清单" width="92%" />
-      <p align="center"><strong>菜谱详情</strong><br />食材和执行信息同页。</p>
+      <p align="center"><strong>菜谱详情</strong></p>
     </td>
     <td width="50%">
       <img src="./docs/screenshots/recipe-steps.png" alt="烹饪步骤列表" width="92%" />
-      <p align="center"><strong>步骤页</strong><br />每一步可单独执行。</p>
+      <p align="center"><strong>步骤页</strong></p>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <img src="./docs/screenshots/favorites.png" alt="收藏页面" width="92%" />
-      <p align="center"><strong>收藏页</strong><br />常做菜快速复做。</p>
+      <p align="center"><strong>收藏页</strong></p>
     </td>
     <td width="50%">
       <img src="./docs/screenshots/settings.png" alt="设置与 AI 配置" width="92%" />
-      <p align="center"><strong>设置页</strong><br />可配置本地偏好和 AI。</p>
+      <p align="center"><strong>设置页</strong></p>
     </td>
   </tr>
 </table>
