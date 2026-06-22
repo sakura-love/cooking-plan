@@ -103,27 +103,31 @@
 
 ### 主界面与核心流程
 
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./docs/screenshots/home.png" alt="首页目录与分类分组" width="100%" />
+      <p align="center"><strong>首页找菜</strong><br />分类目录和搜索并行，200+ 菜谱直接可用。</p>
+    </td>
+    <td width="50%">
+      <img src="./docs/screenshots/recipe-timer.png" alt="菜谱步骤与计时器" width="100%" />
+      <p align="center"><strong>步骤执行</strong><br />步骤勾选和计时放在同一流程里。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./docs/screenshots/meal-plan.png" alt="每周三餐计划" width="100%" />
+      <p align="center"><strong>一周计划</strong><br />先排菜单，再把菜分配到早餐、午餐、晚餐。</p>
+    </td>
+    <td width="50%">
+      <img src="./docs/screenshots/daily-shopping-list.png" alt="买菜清单" width="100%" />
+      <p align="center"><strong>买菜清单</strong><br />按计划自动汇总食材，买菜时逐项勾选。</p>
+    </td>
+  </tr>
+</table>
+
 <p align="center">
-  <img src="./docs/screenshots/home.png" alt="首页目录与分类分组" width="24%" />
-  <img src="./docs/screenshots/recipe-timer.png" alt="菜谱步骤与计时器" width="24%" />
-  <img src="./docs/screenshots/meal-plan.png" alt="每周三餐计划" width="24%" />
-  <img src="./docs/screenshots/daily-shopping-list.png" alt="买菜清单" width="24%" />
-</p>
-
-| 首页找菜 | 步骤执行 | 一周计划 | 买菜清单 |
-| --- | --- | --- | --- |
-| 分类目录和搜索并行，200+ 菜谱直接可用。 | 步骤勾选和计时放在同一流程里。 | 先排菜单，再把菜分配到早餐、午餐、晚餐。 | 按计划自动汇总食材，买菜时逐项勾选。 |
-
-### 细节页
-
-<p align="center">
-  <img src="./docs/screenshots/recipe-detail.png" alt="菜谱详情与备菜清单" width="31%" />
-  <img src="./docs/screenshots/recipe-steps.png" alt="烹饪步骤列表" width="31%" />
-  <img src="./docs/screenshots/settings.png" alt="设置与 AI 配置" width="31%" />
-</p>
-
-<p align="center">
-  <img src="./docs/screenshots/favorites.png" alt="收藏页面" width="31%" />
+  更多界面细节见 <a href="./docs/screenshots/">screenshots 目录</a>，包括详情页、步骤页、收藏页和设置页。
 </p>
 
 ## 主要功能
