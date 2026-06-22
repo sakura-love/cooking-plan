@@ -106,22 +106,22 @@
 <table>
   <tr>
     <td width="50%">
-      <img src="./docs/screenshots/home.png" alt="首页目录与分类分组" width="100%" />
-      <p align="center"><strong>首页找菜</strong><br />分类目录和搜索并行，200+ 菜谱直接可用。</p>
+      <img src="./docs/screenshots/home.png" alt="首页目录与分类分组" width="92%" />
+      <p align="center"><strong>首页找菜</strong><br />分类和搜索并行。</p>
     </td>
     <td width="50%">
-      <img src="./docs/screenshots/recipe-timer.png" alt="菜谱步骤与计时器" width="100%" />
-      <p align="center"><strong>步骤执行</strong><br />步骤勾选和计时放在同一流程里。</p>
+      <img src="./docs/screenshots/recipe-timer.png" alt="菜谱步骤与计时器" width="92%" />
+      <p align="center"><strong>步骤执行</strong><br />勾选和计时同屏。</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <img src="./docs/screenshots/meal-plan.png" alt="每周三餐计划" width="100%" />
-      <p align="center"><strong>一周计划</strong><br />先排菜单，再把菜分配到早餐、午餐、晚餐。</p>
+      <img src="./docs/screenshots/meal-plan.png" alt="每周三餐计划" width="92%" />
+      <p align="center"><strong>一周计划</strong><br />先排菜单再开做。</p>
     </td>
     <td width="50%">
-      <img src="./docs/screenshots/daily-shopping-list.png" alt="买菜清单" width="100%" />
-      <p align="center"><strong>买菜清单</strong><br />按计划自动汇总食材，买菜时逐项勾选。</p>
+      <img src="./docs/screenshots/daily-shopping-list.png" alt="买菜清单" width="92%" />
+      <p align="center"><strong>买菜清单</strong><br />自动汇总，逐项勾选。</p>
     </td>
   </tr>
 </table>
@@ -131,22 +131,22 @@
 <table>
   <tr>
     <td width="50%">
-      <img src="./docs/screenshots/recipe-detail.png" alt="菜谱详情与备菜清单" width="100%" />
-      <p align="center"><strong>菜谱详情</strong><br />把食材、备菜和执行信息放在一页里。</p>
+      <img src="./docs/screenshots/recipe-detail.png" alt="菜谱详情与备菜清单" width="92%" />
+      <p align="center"><strong>菜谱详情</strong><br />食材和执行信息同页。</p>
     </td>
     <td width="50%">
-      <img src="./docs/screenshots/recipe-steps.png" alt="烹饪步骤列表" width="100%" />
-      <p align="center"><strong>步骤页</strong><br />每一步都能单独执行、勾选和回看。</p>
+      <img src="./docs/screenshots/recipe-steps.png" alt="烹饪步骤列表" width="92%" />
+      <p align="center"><strong>步骤页</strong><br />每一步可单独执行。</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <img src="./docs/screenshots/favorites.png" alt="收藏页面" width="100%" />
-      <p align="center"><strong>收藏页</strong><br />常做菜单独收纳，方便快速复做。</p>
+      <img src="./docs/screenshots/favorites.png" alt="收藏页面" width="92%" />
+      <p align="center"><strong>收藏页</strong><br />常做菜快速复做。</p>
     </td>
     <td width="50%">
-      <img src="./docs/screenshots/settings.png" alt="设置与 AI 配置" width="100%" />
-      <p align="center"><strong>设置页</strong><br />配置本地偏好，也可以接入可选 AI 能力。</p>
+      <img src="./docs/screenshots/settings.png" alt="设置与 AI 配置" width="92%" />
+      <p align="center"><strong>设置页</strong><br />可配置本地偏好和 AI。</p>
     </td>
   </tr>
 </table>
