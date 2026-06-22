@@ -126,9 +126,30 @@
   </tr>
 </table>
 
-<p align="center">
-  更多界面细节见 <a href="./docs/screenshots/">screenshots 目录</a>，包括详情页、步骤页、收藏页和设置页。
-</p>
+### 详情页与设置
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./docs/screenshots/recipe-detail.png" alt="菜谱详情与备菜清单" width="100%" />
+      <p align="center"><strong>菜谱详情</strong><br />把食材、备菜和执行信息放在一页里。</p>
+    </td>
+    <td width="50%">
+      <img src="./docs/screenshots/recipe-steps.png" alt="烹饪步骤列表" width="100%" />
+      <p align="center"><strong>步骤页</strong><br />每一步都能单独执行、勾选和回看。</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./docs/screenshots/favorites.png" alt="收藏页面" width="100%" />
+      <p align="center"><strong>收藏页</strong><br />常做菜单独收纳，方便快速复做。</p>
+    </td>
+    <td width="50%">
+      <img src="./docs/screenshots/settings.png" alt="设置与 AI 配置" width="100%" />
+      <p align="center"><strong>设置页</strong><br />配置本地偏好，也可以接入可选 AI 能力。</p>
+    </td>
+  </tr>
+</table>
 
 ## 主要功能
 
