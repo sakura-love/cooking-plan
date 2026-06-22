@@ -156,6 +156,20 @@
 ./gradlew assembleRelease
 ```
 
+### GitHub Pages
+
+仓库已经加入 GitHub Actions 发布工作流：
+
+- `[.github/workflows/pages.yml](./.github/workflows/pages.yml)`
+
+在 GitHub 仓库里再做一次设置即可：
+
+1. 打开仓库 `Settings`
+2. 进入 `Pages`
+3. 在 `Build and deployment` 里把 `Source` 改成 `GitHub Actions`
+
+之后每次推送到 `main` 分支，Pages 会自动发布这个落地页。
+
 ## 技术栈
 
 - Kotlin
