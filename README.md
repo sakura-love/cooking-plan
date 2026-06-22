@@ -1,5 +1,7 @@
 # 料理计划
 
+> GitHub Pages 入口：<https://sakura-love.github.io/cooking-plan/>
+
 <p align="center">
   <img src="./docs/readme-hero.png" alt="料理计划：把做饭变成可执行任务" width="100%" />
 </p>
