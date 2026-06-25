@@ -119,30 +119,106 @@
     /* ── Hero ────────────────────────────── */
 
     .hero {
-      padding: 40px 0 32px;
-      text-align: center;
+      padding: 54px 0 42px;
     }
 
-    .hero-visual {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
+    .hero-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(360px, 0.97fr);
+      gap: 36px;
+      align-items: center;
+      min-height: 520px;
     }
 
-    .hero-visual > img {
-      width: 100%;
-      height: auto;
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      display: block;
+    .hero-copy {
+      min-width: 0;
+      text-align: left;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(90, 64, 46, 0.14);
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--accent-2);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 5px rgba(46, 125, 91, 0.12);
+    }
+
+    .hero h1 {
+      max-width: 660px;
+      margin: 0;
+      font-size: clamp(42px, 5.2vw, 68px);
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .hero-lede {
+      max-width: 620px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+      font-weight: 650;
+    }
+
+    .hero-lede span {
+      display: inline;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 36px;
-      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 620px;
+      margin-top: 34px;
+    }
+
+    .proof-item {
+      min-height: 90px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 250, 242, 0.64);
+      border: 1px solid rgba(90, 64, 46, 0.12);
+      box-shadow: 0 16px 38px rgba(72, 50, 34, 0.08);
+    }
+
+    .proof-item b {
+      display: block;
+      color: var(--accent);
+      font-size: 25px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .proof-item span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 800;
     }
 
     .btn {
@@ -174,60 +250,174 @@
       border-color: rgba(90, 64, 46, 0.14);
     }
 
-    .floating-card {
-      position: absolute;
-      right: 16px;
-      bottom: 16px;
-      width: min(340px, 78%);
-      padding: 22px 24px;
-      border-radius: 24px;
-      background: rgba(255, 250, 242, 0.88);
+    .workflow-board {
+      position: relative;
+      min-width: 0;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(255, 250, 242, 0.78);
       border: 1px solid rgba(90, 64, 46, 0.12);
-      box-shadow: 0 18px 52px rgba(67, 47, 32, 0.16);
-      backdrop-filter: blur(16px);
-      text-align: left;
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .floating-card strong {
+    .workflow-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(90, 64, 46, 0.05) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(90, 64, 46, 0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(150deg, black 0%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .board-head,
+    .board-list,
+    .board-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .board-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .board-head strong {
       display: block;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 950;
+    }
+
+    .board-head span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .board-status {
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(46, 125, 91, 0.12);
       color: var(--accent-2);
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 900;
     }
 
-    .floating-card p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 14px;
-      font-weight: 650;
+    .board-list {
+      display: grid;
+      gap: 12px;
     }
 
-    .metric-row {
+    .task-card {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      min-height: 82px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(90, 64, 46, 0.11);
+    }
+
+    .task-card.is-active {
+      background: #fffaf2;
+      border-color: rgba(202, 80, 60, 0.28);
+      box-shadow: 0 16px 34px rgba(202, 80, 60, 0.12);
+    }
+
+    .task-index {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      color: #fffaf2;
+      background: var(--accent);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .task-card:nth-child(2) .task-index { background: var(--accent-2); }
+    .task-card:nth-child(3) .task-index { background: var(--accent-3); }
+    .task-card:nth-child(4) .task-index { background: #4a6f8c; }
+
+    .task-body strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .task-body span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .task-tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(90, 64, 46, 0.08);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .board-footer {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
       margin-top: 14px;
     }
 
-    .metric {
-      padding-top: 12px;
-      border-top: 1px solid rgba(90, 64, 46, 0.12);
+    .mini-panel {
+      min-height: 106px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(36, 29, 25, 0.92);
+      color: #fffaf2;
     }
 
-    .metric b {
+    .mini-panel:nth-child(2) {
+      background: rgba(46, 125, 91, 0.94);
+    }
+
+    .mini-panel span {
       display: block;
-      font-size: 20px;
-      line-height: 1;
+      color: rgba(255, 250, 242, 0.72);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .mini-panel strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 22px;
+      line-height: 1.1;
       font-weight: 950;
-      color: var(--accent);
     }
 
-    .metric span {
+    .mini-panel small {
       display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 11px;
+      margin-top: 8px;
+      color: rgba(255, 250, 242, 0.72);
+      font-size: 12px;
+      line-height: 1.45;
       font-weight: 700;
     }
 
@@ -620,6 +810,15 @@
     /* ── Responsive ──────────────────────── */
 
     @media (max-width: 1080px) {
+      .hero-shell {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .workflow-board {
+        max-width: 720px;
+      }
+
       .install {
         grid-template-columns: 1fr;
       }
@@ -635,7 +834,10 @@
     }
 
     @media (max-width: 760px) {
-      .wrap { width: min(100% - 20px, var(--max)); }
+      .wrap {
+        width: calc(100% - 20px);
+        max-width: var(--max);
+      }
 
       .topbar-inner,
       .section-head {
@@ -648,25 +850,76 @@
       }
 
       .hero {
-        padding: 20px 0 24px;
+        padding: 34px 0 28px;
       }
 
-      .floating-card {
-        width: calc(100% - 24px);
-        right: 12px;
-        left: 12px;
-        bottom: 8px;
+      .hero h1 {
+        width: 100%;
+        max-width: 100%;
+        font-size: 34px;
+        line-height: 1.12;
+        overflow-wrap: anywhere;
+        word-break: break-all;
       }
 
-      .floating-card strong { font-size: 16px; }
-      .floating-card p { font-size: 12px; }
+      .hero-copy,
+      .workflow-board {
+        width: 100%;
+        max-width: calc(100vw - 20px);
+      }
 
-      .grid-4,
-      .flow {
+      .hero-lede {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+      }
+
+      .hero-lede span {
+        display: block;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+      }
+
+      .hero-proof,
+      .board-footer {
         grid-template-columns: 1fr;
       }
 
-      .metric-row {
+      .workflow-board {
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .board-head {
+        flex-direction: column;
+      }
+
+      .task-card {
+        grid-template-columns: 40px minmax(0, 1fr);
+      }
+
+      .task-index {
+        width: 40px;
+        height: 40px;
+      }
+
+      .task-tag {
+        grid-column: 2;
+        justify-self: start;
+      }
+
+      .grid-4,
+      .flow {
         grid-template-columns: 1fr;
       }
 
@@ -710,31 +963,91 @@
   <main id="top">
     <section class="hero">
       <div class="wrap">
-        <div class="hero-visual">
-          <img src="./docs/readme-hero.png" alt="料理计划 — 把做饭拆成任务流" />
-          <div class="floating-card">
-            <strong>做饭不是收藏，而是执行</strong>
-            <p>适合自己做饭、排一周菜单、整理采购清单和边做边看步骤的场景。核心体验默认本地可用，可选 AI 生成功能。</p>
-            <div class="metric-row" aria-label="产品数据">
-              <div class="metric">
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <div class="hero-kicker">Android 本地做饭助手</div>
+            <h1>把做饭整理成<br />可执行任务流</h1>
+            <p class="hero-lede">
+              <span>料理计划把菜谱、步骤、计时、</span>
+              <span>一周菜单和买菜清单放进同一个流程里。</span>
+              <span>打开就能找菜、照着做、排计划，</span>
+              <span>适合真实厨房里反复使用。</span>
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
+              <a class="btn secondary" href="https://github.com/sakura-love/cooking-plan/blob/main/README.md">查看 README</a>
+              <a class="btn secondary" href="https://github.com/sakura-love/cooking-plan/blob/main/CHANGELOG.md">更新日志</a>
+            </div>
+            <div class="hero-proof" aria-label="产品数据">
+              <div class="proof-item">
                 <b>200+</b>
-                <span>本地菜谱</span>
+                <span>离线菜谱，安装后直接可用</span>
               </div>
-              <div class="metric">
-                <b>4</b>
-                <span>类 AI 服务商</span>
+              <div class="proof-item">
+                <b>3 餐</b>
+                <span>按天安排早中晚菜单</span>
               </div>
-              <div class="metric">
-                <b>3</b>
-                <span>餐计划体系</span>
+              <div class="proof-item">
+                <b>AI</b>
+                <span>可选生成菜谱，不影响本地使用</span>
               </div>
             </div>
           </div>
-        </div>
-        <div class="hero-actions">
-          <a class="btn primary" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
-          <a class="btn secondary" href="./README.md">查看 README</a>
-          <a class="btn secondary" href="./CHANGELOG.md">更新日志</a>
+          <div class="workflow-board" aria-label="料理计划任务流示意">
+            <div class="board-head">
+              <div>
+                <strong>今晚的厨房流程</strong>
+                <span>从想吃什么到买什么、怎么做</span>
+              </div>
+              <div class="board-status">进行中</div>
+            </div>
+            <div class="board-list">
+              <div class="task-card is-active">
+                <div class="task-index">01</div>
+                <div class="task-body">
+                  <strong>选一道适合今天的菜</strong>
+                  <span>按分类、收藏和关键词快速定位</span>
+                </div>
+                <div class="task-tag">找菜</div>
+              </div>
+              <div class="task-card">
+                <div class="task-index">02</div>
+                <div class="task-body">
+                  <strong>把菜谱拆成步骤</strong>
+                  <span>准备、下锅、调味、收尾逐项推进</span>
+                </div>
+                <div class="task-tag">执行</div>
+              </div>
+              <div class="task-card">
+                <div class="task-index">03</div>
+                <div class="task-body">
+                  <strong>自动汇总采购清单</strong>
+                  <span>按当天计划整理食材，少漏买</span>
+                </div>
+                <div class="task-tag">买菜</div>
+              </div>
+              <div class="task-card">
+                <div class="task-index">04</div>
+                <div class="task-body">
+                  <strong>关键步骤直接计时</strong>
+                  <span>倒计时跟着菜谱走，不用来回切应用</span>
+                </div>
+                <div class="task-tag">计时</div>
+              </div>
+            </div>
+            <div class="board-footer">
+              <div class="mini-panel">
+                <span>本周计划</span>
+                <strong>7 天菜单</strong>
+                <small>把常做菜排进早中晚三餐</small>
+              </div>
+              <div class="mini-panel">
+                <span>当前模式</span>
+                <strong>本地优先</strong>
+                <small>核心功能无需联网，AI 可选配置</small>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -870,7 +1183,7 @@
             <p>发布包位于仓库的 releases 目录。当前示例版本为 <strong>料理计划-v1.2.8.apk</strong>。如果手机里已经安装过正式版，请继续安装 release 包覆盖升级，不要使用 debug 包直接覆盖。</p>
             <div class="link-row">
               <a class="pill" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
-              <a class="pill" href="./README.md">README</a>
+              <a class="pill" href="https://github.com/sakura-love/cooking-plan/blob/main/README.md">README</a>
               <a class="pill" href="./LICENSE">许可证</a>
             </div>
           </div>
