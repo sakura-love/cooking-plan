@@ -8,6 +8,7 @@ on:
       - "index.html"
       - "README.md"
       - "LICENSE"
+      - "icon/**"
       - "docs/**"
       - "releases/**"
       - ".github/workflows/pages.yml"
@@ -37,10 +38,11 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf site
-          mkdir -p site/docs site/releases
+          mkdir -p site/icon site/docs site/releases
           cp index.html site/
           cp README.md site/
           cp LICENSE site/
+          cp -R icon/. site/icon/
           cp -R docs/. site/docs/
           cp releases/料理计划-v1.2.8.apk site/releases/
           touch site/.nojekyll
