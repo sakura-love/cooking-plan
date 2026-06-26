@@ -250,181 +250,60 @@
       border-color: rgba(90, 64, 46, 0.14);
     }
 
-    .workflow-board {
+    .hero-phones {
       position: relative;
-      min-width: 0;
-      padding: 22px;
-      border-radius: 28px;
-      background: rgba(255, 250, 242, 0.78);
-      border: 1px solid rgba(90, 64, 46, 0.12);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .workflow-board::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(90, 64, 46, 0.05) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(90, 64, 46, 0.05) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: linear-gradient(150deg, black 0%, transparent 72%);
-      pointer-events: none;
-    }
-
-    .board-head,
-    .board-list,
-    .board-footer {
-      position: relative;
-      z-index: 1;
-    }
-
-    .board-head {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .board-head strong {
-      display: block;
-      font-size: 20px;
-      line-height: 1.2;
-      font-weight: 950;
-    }
-
-    .board-head span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .board-status {
-      flex: 0 0 auto;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(46, 125, 91, 0.12);
-      color: var(--accent-2);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .board-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .task-card {
-      display: grid;
-      grid-template-columns: 44px minmax(0, 1fr) auto;
-      gap: 14px;
       align-items: center;
-      min-height: 82px;
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.68);
-      border: 1px solid rgba(90, 64, 46, 0.11);
+      justify-content: center;
+      min-height: 460px;
     }
 
-    .task-card.is-active {
-      background: #fffaf2;
-      border-color: rgba(202, 80, 60, 0.28);
-      box-shadow: 0 16px 34px rgba(202, 80, 60, 0.12);
+    .hero-phone {
+      position: absolute;
+      width: 210px;
+      border-radius: 28px;
+      padding: 8px;
+      background: linear-gradient(145deg, #fffaf2, #eee2d5);
+      box-shadow: 0 24px 56px rgba(80, 55, 38, 0.22);
+      overflow: hidden;
+      aspect-ratio: 9 / 16;
+      transition: transform 0.35s ease;
     }
 
-    .task-index {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      color: #fffaf2;
-      background: var(--accent);
-      font-size: 13px;
-      font-weight: 950;
-    }
-
-    .task-card:nth-child(2) .task-index { background: var(--accent-2); }
-    .task-card:nth-child(3) .task-index { background: var(--accent-3); }
-    .task-card:nth-child(4) .task-index { background: #4a6f8c; }
-
-    .task-body strong {
+    .hero-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 22px;
       display: block;
-      font-size: 15px;
-      line-height: 1.25;
-      font-weight: 950;
     }
 
-    .task-body span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.45;
-      font-weight: 700;
+    .hero-phone.is-main {
+      position: relative;
+      z-index: 3;
+      width: 232px;
+      transform: rotate(-2deg);
+      box-shadow: 0 28px 64px rgba(80, 55, 38, 0.28);
     }
 
-    .task-tag {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(90, 64, 46, 0.08);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
+    .hero-phone.is-left {
+      z-index: 2;
+      transform: rotate(-10deg) translateX(-125px) scale(0.86);
+      opacity: 0.88;
     }
 
-    .board-footer {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .mini-panel {
-      min-height: 106px;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(36, 29, 25, 0.92);
-      color: #fffaf2;
-    }
-
-    .mini-panel:nth-child(2) {
-      background: rgba(46, 125, 91, 0.94);
-    }
-
-    .mini-panel span {
-      display: block;
-      color: rgba(255, 250, 242, 0.72);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .mini-panel strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 22px;
-      line-height: 1.1;
-      font-weight: 950;
-    }
-
-    .mini-panel small {
-      display: block;
-      margin-top: 8px;
-      color: rgba(255, 250, 242, 0.72);
-      font-size: 12px;
-      line-height: 1.45;
-      font-weight: 700;
+    .hero-phone.is-right {
+      z-index: 1;
+      transform: rotate(8deg) translateX(125px) scale(0.86);
+      opacity: 0.88;
     }
 
     /* ── Sections ────────────────────────── */
 
     section {
       padding: 46px 0 54px;
+      scroll-margin-top: 88px;
     }
 
     .section-head {
@@ -460,7 +339,7 @@
     }
 
     .feature {
-      padding: 28px;
+      padding: 20px 22px;
       border-radius: var(--radius-lg);
       background: var(--card);
       border: 1px solid rgba(90, 64, 46, 0.12);
@@ -473,29 +352,33 @@
       box-shadow: 0 24px 56px rgba(72, 50, 34, 0.13);
     }
 
-    .feature .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature h3 .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       background: rgba(202, 80, 60, 0.12);
       color: var(--accent);
       font-weight: 900;
-      margin-bottom: 16px;
-      font-size: 15px;
-    }
-
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 19px;
+      font-size: 13px;
+      flex-shrink: 0;
     }
 
     .feature p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.75;
-      font-size: 14px;
+      line-height: 1.7;
+      font-size: 13px;
       font-weight: 650;
     }
 
@@ -689,7 +572,7 @@
 
     .step {
       position: relative;
-      padding: 28px;
+      padding: 20px 22px;
       border-radius: 24px;
       background: rgba(255, 255, 255, 0.62);
       border: 1px solid rgba(90, 64, 46, 0.12);
@@ -701,29 +584,33 @@
       box-shadow: 0 18px 44px rgba(72, 50, 34, 0.1);
     }
 
-    .step .index {
-      display: inline-grid;
-      place-items: center;
-      width: 36px;
-      height: 36px;
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step h3 .index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
       border-radius: 999px;
       background: rgba(46, 125, 91, 0.12);
       color: var(--accent-2);
       font-weight: 900;
-      margin-bottom: 16px;
-      font-size: 15px;
-    }
-
-    .step h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
+      font-size: 13px;
+      flex-shrink: 0;
     }
 
     .step p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.75;
-      font-size: 14px;
+      line-height: 1.7;
+      font-size: 13px;
       font-weight: 650;
     }
 
@@ -742,6 +629,7 @@
       background: rgba(255, 251, 245, 0.76);
       border: 1px solid rgba(90, 64, 46, 0.12);
       box-shadow: 0 16px 44px rgba(72, 50, 34, 0.08);
+      scroll-margin-top: 88px;
     }
 
     .callout h3,
@@ -762,26 +650,135 @@
     .link-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    @keyframes pill-breathe {
+      0%, 100% { box-shadow: 0 16px 30px rgba(191, 63, 47, 0.28); }
+      50%      { box-shadow: 0 20px 42px rgba(191, 63, 47, 0.42); }
+    }
+
+    @keyframes icon-bounce {
+      0%, 100% { transform: translateY(0); }
+      40%      { transform: translateY(-3px); }
+      60%      { transform: translateY(-1px); }
+    }
+
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%) skewX(-12deg); }
+      100% { transform: translateX(200%) skewX(-12deg); }
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 14px 20px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.58);
-      border: 1px solid rgba(90, 64, 46, 0.12);
+      padding: 14px 22px;
+      border-radius: 16px;
       text-decoration: none;
-      color: var(--text);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
-      transition: background 0.2s ease, transform 0.2s ease;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     }
 
-    .pill:hover { background: rgba(255, 255, 255, 0.86); transform: translateY(-1px); }
+    .pill:hover { transform: translateY(-2px); }
+
+    /* ── Primary: breathing glow + icon bounce ── */
+
+    .pill.is-primary {
+      position: relative;
+      color: #fffaf2;
+      background: linear-gradient(145deg, #d24e38, #bf3f2f);
+      box-shadow: 0 16px 30px rgba(191, 63, 47, 0.28);
+      padding: 16px 28px;
+      font-size: 16px;
+      animation: pill-breathe 2.8s ease-in-out infinite;
+    }
+
+    .pill.is-primary:hover {
+      animation: none;
+      box-shadow: 0 22px 44px rgba(191, 63, 47, 0.44);
+    }
+
+    .pill.is-primary:hover svg {
+      animation: icon-bounce 0.45s ease;
+    }
+
+    /* ── Secondary: shimmer sweep on hover ── */
+
+    .pill.is-secondary {
+      position: relative;
+      color: var(--text);
+      background: rgba(46, 125, 91, 0.1);
+      border-color: rgba(46, 125, 91, 0.22);
+      overflow: hidden;
+    }
+
+    .pill.is-secondary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.45) 48%, transparent 62%);
+      transform: translateX(-100%) skewX(-12deg);
+      pointer-events: none;
+    }
+
+    .pill.is-secondary:hover {
+      background: rgba(46, 125, 91, 0.2);
+      box-shadow: 0 8px 22px rgba(46, 125, 91, 0.14);
+    }
+
+    .pill.is-secondary:hover::after {
+      animation: shimmer 0.6s ease forwards;
+    }
+
+    /* ── Ghost: border reveal + slide ── */
+
+    .pill.is-ghost {
+      position: relative;
+      color: var(--muted);
+      background: transparent;
+      border-color: rgba(90, 64, 46, 0.12);
+      padding-left: 18px;
+      transition: padding-left 0.25s ease, color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .pill.is-ghost::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 18px;
+      border-radius: 0 3px 3px 0;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .pill.is-ghost:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(90, 64, 46, 0.22);
+      padding-left: 26px;
+    }
+
+    .pill.is-ghost:hover::before {
+      width: 3px;
+    }
+
+    .pill svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .pill.is-primary svg {
+      stroke: #fffaf2;
+    }
 
     .codecard code {
       display: block;
@@ -815,9 +812,16 @@
         min-height: auto;
       }
 
-      .workflow-board {
-        max-width: 720px;
+      .hero-phones {
+        min-height: 360px;
+        max-width: 600px;
+        margin: 0 auto;
       }
+
+      .hero-phone { width: 170px; }
+      .hero-phone.is-main { width: 190px; }
+      .hero-phone.is-left { transform: rotate(-10deg) translateX(-100px) scale(0.84); }
+      .hero-phone.is-right { transform: rotate(8deg) translateX(100px) scale(0.84); }
 
       .install {
         grid-template-columns: 1fr;
@@ -863,10 +867,19 @@
       }
 
       .hero-copy,
-      .workflow-board {
+      .hero-phones {
         width: 100%;
         max-width: calc(100vw - 20px);
       }
+
+      .hero-phones {
+        min-height: 300px;
+      }
+
+      .hero-phone { width: 130px; }
+      .hero-phone.is-main { width: 150px; }
+      .hero-phone.is-left { transform: rotate(-8deg) translateX(-70px) scale(0.82); }
+      .hero-phone.is-right { transform: rotate(6deg) translateX(70px) scale(0.82); }
 
       .hero-lede {
         width: 100%;
@@ -890,32 +903,8 @@
         flex: 1 1 100%;
       }
 
-      .hero-proof,
-      .board-footer {
+      .hero-proof {
         grid-template-columns: 1fr;
-      }
-
-      .workflow-board {
-        padding: 16px;
-        border-radius: 22px;
-      }
-
-      .board-head {
-        flex-direction: column;
-      }
-
-      .task-card {
-        grid-template-columns: 40px minmax(0, 1fr);
-      }
-
-      .task-index {
-        width: 40px;
-        height: 40px;
-      }
-
-      .task-tag {
-        grid-column: 2;
-        justify-self: start;
       }
 
       .grid-4,
@@ -974,8 +963,8 @@
               <span>适合真实厨房里反复使用。</span>
             </p>
             <div class="hero-actions">
-              <a class="btn primary" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
-              <a class="btn secondary" href="https://github.com/sakura-love/cooking-plan/blob/main/README.md">查看 README</a>
+              <a class="btn primary" href="#install">下载 APK</a>
+              <a class="btn secondary" href="#install">查看 README</a>
               <a class="btn secondary" href="https://github.com/sakura-love/cooking-plan/blob/main/CHANGELOG.md">更新日志</a>
             </div>
             <div class="hero-proof" aria-label="产品数据">
@@ -993,59 +982,15 @@
               </div>
             </div>
           </div>
-          <div class="workflow-board" aria-label="料理计划任务流示意">
-            <div class="board-head">
-              <div>
-                <strong>今晚的厨房流程</strong>
-                <span>从想吃什么到买什么、怎么做</span>
-              </div>
-              <div class="board-status">进行中</div>
+          <div class="hero-phones" aria-label="料理计划应用截图">
+            <div class="hero-phone is-left">
+              <img src="./docs/screenshots/recipe-steps.png" alt="步骤执行" />
             </div>
-            <div class="board-list">
-              <div class="task-card is-active">
-                <div class="task-index">01</div>
-                <div class="task-body">
-                  <strong>选一道适合今天的菜</strong>
-                  <span>按分类、收藏和关键词快速定位</span>
-                </div>
-                <div class="task-tag">找菜</div>
-              </div>
-              <div class="task-card">
-                <div class="task-index">02</div>
-                <div class="task-body">
-                  <strong>把菜谱拆成步骤</strong>
-                  <span>准备、下锅、调味、收尾逐项推进</span>
-                </div>
-                <div class="task-tag">执行</div>
-              </div>
-              <div class="task-card">
-                <div class="task-index">03</div>
-                <div class="task-body">
-                  <strong>自动汇总采购清单</strong>
-                  <span>按当天计划整理食材，少漏买</span>
-                </div>
-                <div class="task-tag">买菜</div>
-              </div>
-              <div class="task-card">
-                <div class="task-index">04</div>
-                <div class="task-body">
-                  <strong>关键步骤直接计时</strong>
-                  <span>倒计时跟着菜谱走，不用来回切应用</span>
-                </div>
-                <div class="task-tag">计时</div>
-              </div>
+            <div class="hero-phone is-main">
+              <img src="./docs/screenshots/home.png" alt="首页找菜" />
             </div>
-            <div class="board-footer">
-              <div class="mini-panel">
-                <span>本周计划</span>
-                <strong>7 天菜单</strong>
-                <small>把常做菜排进早中晚三餐</small>
-              </div>
-              <div class="mini-panel">
-                <span>当前模式</span>
-                <strong>本地优先</strong>
-                <small>核心功能无需联网，AI 可选配置</small>
-              </div>
+            <div class="hero-phone is-right">
+              <img src="./docs/screenshots/daily-shopping-list.png" alt="买菜清单" />
             </div>
           </div>
         </div>
@@ -1063,43 +1008,35 @@
 
         <div class="grid-4">
           <article class="feature">
-            <div class="icon">01</div>
-            <h3>任务式菜谱</h3>
+            <h3><span class="icon">01</span>任务式菜谱</h3>
             <p>每道菜都拆成食材、步骤和进度节点，做饭时按步骤往下走，不用反复翻找文字。</p>
           </article>
           <article class="feature">
-            <div class="icon">02</div>
-            <h3>步骤内置计时</h3>
+            <h3><span class="icon">02</span>步骤内置计时</h3>
             <p>焯水、腌制、炖煮、蒸烤等需要时间的动作，可以直接在菜谱流程里开计时器。</p>
           </article>
           <article class="feature">
-            <div class="icon">03</div>
-            <h3>一周三餐计划</h3>
+            <h3><span class="icon">03</span>一周三餐计划</h3>
             <p>提前安排早餐、午餐、晚餐，同一顿饭也能放入多道菜，适合整周统筹。</p>
           </article>
           <article class="feature">
-            <div class="icon">04</div>
-            <h3>自动买菜清单</h3>
+            <h3><span class="icon">04</span>自动买菜清单</h3>
             <p>根据计划汇总当天或单餐所需食材，买菜时逐项勾选，减少遗漏和重复。</p>
           </article>
           <article class="feature">
-            <div class="icon">05</div>
-            <h3>200+ 本地菜谱</h3>
+            <h3><span class="icon">05</span>200+ 本地菜谱</h3>
             <p>内置家常菜、主食、汤、凉菜、小吃和甜品，没接入 AI 也能直接离线使用。</p>
           </article>
           <article class="feature">
-            <div class="icon">06</div>
-            <h3>可选 AI 生成</h3>
+            <h3><span class="icon">06</span>可选 AI 生成</h3>
             <p>可配置 DeepSeek、智谱、OpenAI 或兼容平台，按自己的口味快速生成新菜谱。</p>
           </article>
           <article class="feature">
-            <div class="icon">07</div>
-            <h3>收藏常做菜</h3>
+            <h3><span class="icon">07</span>收藏常做菜</h3>
             <p>常做菜可以单独收藏，减少重复搜索，常用菜单更容易回到手边。</p>
           </article>
           <article class="feature">
-            <div class="icon">08</div>
-            <h3>新手引导与主题</h3>
+            <h3><span class="icon">08</span>新手引导与主题</h3>
             <p>提供厨房名词和基础操作说明，并支持跟随系统、浅色和深色模式。</p>
           </article>
         </div>
@@ -1111,7 +1048,7 @@
         <div class="section-head">
           <div>
             <h2>界面展示</h2>
-            <p>覆盖找菜、做菜、计划和采购的主流程。点击左右箭头或圆点切换，悬停暂停自动轮播。</p>
+            <p>从找菜谱到跟着步骤做菜，再到买菜清单一键汇总——每一步都清楚直观，打开就能上手。</p>
           </div>
         </div>
 
@@ -1145,23 +1082,19 @@
 
         <div class="flow">
           <article class="step">
-            <div class="index">1</div>
-            <h3>先选菜</h3>
+            <h3><span class="index">1</span>先选菜</h3>
             <p>从首页分类里找菜，或者直接搜索菜名、分类、简介和食材。</p>
           </article>
           <article class="step">
-            <div class="index">2</div>
-            <h3>再排计划</h3>
+            <h3><span class="index">2</span>再排计划</h3>
             <p>把菜放进早餐、午餐、晚餐，先把这周吃什么定下来。</p>
           </article>
           <article class="step">
-            <div class="index">3</div>
-            <h3>按步骤执行</h3>
+            <h3><span class="index">3</span>按步骤执行</h3>
             <p>打开菜谱后逐步勾选，遇到需要时间的步骤直接开计时器。</p>
           </article>
           <article class="step">
-            <div class="index">4</div>
-            <h3>看清单买菜</h3>
+            <h3><span class="index">4</span>看清单买菜</h3>
             <p>系统会根据计划汇总食材，买菜时逐项勾选，减少漏买。</p>
           </article>
         </div>
@@ -1182,9 +1115,15 @@
             <h3>直接下载 APK</h3>
             <p>发布包位于仓库的 releases 目录。当前示例版本为 <strong>料理计划-v1.2.8.apk</strong>。如果手机里已经安装过正式版，请继续安装 release 包覆盖升级，不要使用 debug 包直接覆盖。</p>
             <div class="link-row">
-              <a class="pill" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">下载 APK</a>
-              <a class="pill" href="https://github.com/sakura-love/cooking-plan/blob/main/README.md">README</a>
-              <a class="pill" href="./LICENSE">许可证</a>
+              <a class="pill is-primary" href="./releases/%E6%96%99%E7%90%86%E8%AE%A1%E5%88%92-v1.2.8.apk">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                下载 APK
+              </a>
+              <a class="pill is-secondary" href="https://github.com/sakura-love/cooking-plan/blob/main/README.md">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                README
+              </a>
+              <a class="pill is-ghost" href="./LICENSE">许可证</a>
             </div>
           </div>
 
