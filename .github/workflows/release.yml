@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Inject version
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          cat > version.properties << EOF
+          VERSION_MAJOR=$MAJOR
+          VERSION_MINOR=$MINOR
+          VERSION_PATCH=$PATCH
+          EOF
+
+      - name: Build APK
+        run: ./gradlew assembleRelease
+
+      - name: Generate changelog
+        run: |
+          CURRENT="${{ github.ref_name }}"
+          PREV=$(git describe --tags --abbrev=0 "$CURRENT^" 2>/dev/null || echo "")
+          if [ -n "$PREV" ]; then
+            git log "$PREV..$CURRENT" --pretty=format:"- %s (%h)" --no-merges > changelog.txt
+          else
+            git log --pretty=format:"- %s (%h)" --no-merges > changelog.txt
+          fi
+          echo "## $CURRENT" | cat - changelog.txt > CHANGELOG_TEMP.md
+
+      - name: Rename APK
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-release-unsigned.apk "dist/料理计划-v${{ steps.version.outputs.version }}.apk"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: "料理计划 ${{ github.ref_name }}"
+          body_path: CHANGELOG_TEMP.md
+          files: dist/料理计划-v${{ steps.version.outputs.version }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
